@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/setupTests.ts","./src/components/FileUpload.tsx","./src/components/ValidationSummary.tsx","./src/stores/excelStore.ts","./src/tests/FileUpload.test.tsx","./src/tests/ValidationSummary.test.tsx","./src/tests/excelParser.test.ts","./src/types/excel.ts","./src/utils/excelParser.ts"],"version":"5.9.2"}
