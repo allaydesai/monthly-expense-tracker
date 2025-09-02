@@ -1,0 +1,3 @@
+# Spec Summary (Lite)
+
+Implement Excel file upload and parsing functionality that processes multi-sheet spreadsheets with validation to serve as the foundation for expense tracking. Users can upload .xlsx files containing transaction data from multiple bank accounts, with the system providing comprehensive validation and error reporting. This feature uses SheetJS to handle various date formats, formula evaluation, and multi-sheet processing while maintaining data integrity.
