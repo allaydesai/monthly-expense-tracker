@@ -1,0 +1,41 @@
+name: Claude Code Review
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  claude:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.actor != 'dependabot[bot]'
+    steps:
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Automatically review PRs when opened or updated
+          prompt: |
+            Please review this pull request for:
+            - Code quality and best practices
+            - Security vulnerabilities
+            - Performance implications
+            - TypeScript/React patterns
+            - Test coverage
+            - Documentation completeness
+            
+            Focus on the Excel parsing functionality and provide constructive feedback.
+          claude_args: "--max-turns 3"
+
+  # Security review job for critical changes
+  security-review:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: "/security-review"
+          claude_args: "--max-turns 2"
